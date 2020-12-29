@@ -13,7 +13,7 @@ def main():
     plane,ok=rdi.getPlanesFromPixel(mat_cam,dp)
     print(plane)
     print(ok)
-    print("test")
+    print("test123")
 
 if __name__=="__main__":
     main()
