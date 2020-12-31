@@ -24,7 +24,8 @@ def getPlanesFromPixel(cam,pixel_distorted):
     u,s,v=la.svd(A)
     ok=s[2]>10**(-5)
     plane=v.transpose()[:,-1]
-    return plane,ok
+    plane=np.matrix(plane)
+    return plane.transpose(),ok
 
 def calc_cam_mat(cam_params):
     """
@@ -69,11 +70,11 @@ def calc_points_3d(points1,points2,points3):
 def tl2cen(points, size):
     """
     WORK!!!
-    dont know what this function doing
+    function that transform from left to center coordinates
     """
     hsz=size/2
     points[:,0]=points[:,0]-hsz[0]
-    points[:, 1] =  hsz[1]-points[:, 1]
+    points[:, 1] = hsz[1]-points[:, 1]
     return points
 
 def estimationMultiview3d(cams,camsPixelDistorted):
@@ -86,7 +87,25 @@ def estimationMultiview3d(cams,camsPixelDistorted):
     pass
 
 def get3planesIntersectionMultiview(planes):
-    pass
+    """
+    function [point3D, ok] = Get3planesIntersectionMultiview(planes)
+    [~, s, v] = svd(planes);
+    ok = s(3,3) > 1e-5;
+    point3D = v(:,end);
+    point3D = point3D/point3D(4);
+    """
+
+    u,s,v=la.svd(planes)
+    ok=s[2]>10**(-5)
+    v=v.transpose()
+    print("v: \n",v)
+    point3D=v[:,-1]
+    print("point3D: \n",point3D)
+    point3D=point3D/point3D[3]
+    print("point3D: \n",point3D)
+    return point3D,ok
+
+
 
 def radialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted,cam1pixelDistorted,cam2pixelDistorted):
     """
@@ -105,7 +124,16 @@ def radialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted,cam1
     pass
 
 def get3planesIntersection(plane0,plane1,plane2):
-    pass
+    p0t=plane0.T
+    p1t=plane1.T
+    p2t=plane2.T
+    A=np.vstack((p0t,p1t,p2t))
+    u, s, v = la.svd(A)
+    ok = s[2] > 10 ** (-5)
+    v = v.transpose()
+    point3D = v[:, -1]
+    point3D = point3D / point3D[3]
+    return point3D, ok
 
 
 
