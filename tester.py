@@ -33,8 +33,8 @@ def main():
     print("plane0: \n",plane0)
     print("plane1: \n", plane1)
     print("plane2: \n", plane2)
-    rdi.get3planesIntersection(plane0,plane1,plane2)
-
+    point,ok=rdi.get3planesIntersection(plane0,plane1,plane2)
+    print(point,ok)
 
 
 

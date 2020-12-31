@@ -50,7 +50,6 @@ def applyDistortion(idealPixels,polyCoefs):
     ideal_pixel_radius=(idealPixels[0,:]**2+idealPixels[1,:]**2)**(0.5)
 
     distorted_pixel_radius=polyCoefs[0]*np.power(ideal_pixel_radius,5) +polyCoefs[1]*np.power(ideal_pixel_radius,3)+ideal_pixel_radius*polyCoefs[2]
-    print("dsr: \n",distorted_pixel_radius)
     cam_radius_ratio=distorted_pixel_radius/ideal_pixel_radius
     first=idealPixels[0,:]*cam_radius_ratio
     second=idealPixels[1,:]*cam_radius_ratio
@@ -98,11 +97,8 @@ def get3planesIntersectionMultiview(planes):
     u,s,v=la.svd(planes)
     ok=s[2]>10**(-5)
     v=v.transpose()
-    print("v: \n",v)
     point3D=v[:,-1]
-    print("point3D: \n",point3D)
     point3D=point3D/point3D[3]
-    print("point3D: \n",point3D)
     return point3D,ok
 
 
