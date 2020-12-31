@@ -16,8 +16,10 @@ def main():
               [-0.4958   ,-0.0279 ,  -0.1094  , -0.1945   ,-0.1591  , -0.4297,   -0.1864  , -0.1687   ,-0.4285   ,-0.1095,
                -0.1659 ,  -0.1418,   -0.1547 ,  -0.2818,   -0.3602 ,  -0.4137 ,  -0.2166 ,  -0.2116 ,  -0.1041 ,  -0.2789]])
     polyCoefs=[0.5,-0.5,1.5]
-    test=rdi.applyDistortion(ideal_pixels,polyCoefs)
-    print(test)
-    #print(ideal_pixels)
+    #test=rdi.applyDistortion(ideal_pixels,polyCoefs)
+    mat=np.array([[235,53],[497,32],[612,99],[305,149],[236,231],[289,337],[531,267]])
+    print(mat)
+    size=np.array([640,480])
+    print("\n",rdi.tl2cen(mat,size))
 if __name__=="__main__":
     main()
