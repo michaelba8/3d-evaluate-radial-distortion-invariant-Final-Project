@@ -67,7 +67,14 @@ def calc_points_3d(points1,points2,points3):
     pass
 
 def tl2cen(points, size):
-    pass
+    """
+    WORK!!!
+    dont know what this function doing
+    """
+    hsz=size/2
+    points[:,0]=points[:,0]-hsz[0]
+    points[:, 1] =  hsz[1]-points[:, 1]
+    return points
 
 def estimationMultiview3d(cams,camsPixelDistorted):
     """
