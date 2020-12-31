@@ -113,15 +113,13 @@ def radialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted,cam1
     matrices, and calculates the 3d point location, even under severe radial distortion.
     success - false if two cameras are identical or if all 3 cameras center
     ray is looking at the same 3D point or are parallel.
-    :param cam0:
-    :param cam1:
-    :param cam2:
-    :param cam0pixelDistorted:
-    :param cam1pixelDistorted:
-    :param cam2pixelDistorted:
-    :return:
     """
-    pass
+    plane0,ok0=getPlanesFromPixel(cam0,cam0pixelDistorted)
+    plane1,ok1 = getPlanesFromPixel(cam1, cam1pixelDistorted)
+    plane2,ok2 = getPlanesFromPixel(cam2, cam2pixelDistorted)
+    res,ok3=get3planesIntersection(plane0,plane1,plane2)
+    success=ok0 and ok1 and ok2 and ok3
+    return res,success
 
 def get3planesIntersection(plane0,plane1,plane2):
     p0t=plane0.T
