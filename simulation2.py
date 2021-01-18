@@ -31,18 +31,3 @@ def matrix_from_file(file_name):
     with open(file_name, 'r') as f:
         l = [[np.float64(num) for num in line.split(',')] for line in f]
     return np.array(l,dtype=np.float64)
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__=="__main__":
-    main()

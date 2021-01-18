@@ -1,5 +1,6 @@
 import numpy as np
 import numpy.linalg as la
+from scipy import linalg
 
 
 
@@ -9,10 +10,12 @@ import numpy.linalg as la
 def getPlanesFromPixel(cam,pixel_distorted):
     """ WORKING!!!
         need more tests
-        get an input of pixel(x,y) and camera matrix and return plane"""
+        get an input of pixel(x,y) and camera matrix and return plane
+        """
     p0=np.array([[0],[0],[0]])
     p1=np.array([[0],[0],[1]])
     p2=np.array([[pixel_distorted[0]],[pixel_distorted[1]],[1]])
+
     R=cam[:,0:3]
     T=cam[:,[3]]
     Rt=R.transpose()
@@ -122,11 +125,12 @@ def get3planesIntersection(plane0,plane1,plane2):
     p1t=plane1.T
     p2t=plane2.T
     A=np.vstack((p0t,p1t,p2t))
-    u, s, v = la.svd(A)
+    u,s,v=la.svd(A)
     ok = s[2] > 10 ** (-5)
     v = v.transpose()
     point3D = v[:, -1]
     point3D = point3D / point3D[3]
+
     return point3D, ok
 
 
