@@ -2,14 +2,15 @@ function [err,oks] = RadialDistortionInvariant3dEstimationFailureTest2
 % a synthetic example to the singular point of 3D estimation which is invariant
 % to radial distortion. 
 % We will make three cameras which lookat vectors intersect. This is a
-% singular point in which there is no solution. 
-debug = true;
+% singular point in which there is n+o solution. 
+err=RadialDistortionInvariant3dEstimationTest()
+return
+debug = false;
 %ideal points and cameras:
 points3D = [rand(3,100) ; ones(1,100)];
 points3D(1,:) = points3D(1,:) - 0.5;
 points3D(2,:) = points3D(2,:) - 0.5;
 points3D(3,:) = points3D(3,:) + 2;
-fprintf("asd");
 
 K = eye(3);
 cam0 = [eye(3) [0 ;0 ;0]];
@@ -49,7 +50,7 @@ polyCoefs = [0.5,-0.5,1.5];
 cam0pixelDistorted  = ApplyDistortion(cam0pixelsIdeal,polyCoefs);
 cam1pixelDistorted  = ApplyDistortion(cam1pixelsIdeal,polyCoefs);
 cam2pixelDistorted  = ApplyDistortion(cam2pixelsIdeal,polyCoefs);
-
+writematrix(cam0pixelDistorted)
 if(debug)
    figure(4);
    subplot(2,2,1);
@@ -112,9 +113,9 @@ ok = zeros(size(points3D,2),1);
 for i = 1:size(cam2pixelsIdeal,2)
     [estimatedPoints(:,i),ok(i)] = RadialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted(:,i),cam1pixelDistorted(:,i),cam2pixelDistorted(:,i));
 end
+writematrix(estimatedPoints)
 err = norm(estimatedPoints - points3D);
 oks = sum(ok);
-
 if debug
     subplot(2,2,1);
     hold on;
@@ -141,12 +142,14 @@ points3D = [rand(3,100) ; ones(1,100)];
 points3D(1,:) = points3D(1,:) - 0.5;
 points3D(2,:) = points3D(2,:) - 0.5;
 points3D(3,:) = points3D(3,:) + 2;
-
+writematrix(points3D)
 K = eye(3);
 cam0 = [eye(3) [0;0;0]];
 cam1 = GetRandomCamera([-1;0;0]);
 cam2 = GetRandomCamera([0;-1;0]);
-
+writematrix(cam0)
+writematrix(cam1)
+writematrix(cam2)
 %projection of 3D points to all cameras
 cam0pixelsIdeal = K * cam0 * points3D;
 cam0pixelsIdeal = [cam0pixelsIdeal(1,:)./cam0pixelsIdeal(3,:) ; cam0pixelsIdeal(2,:)./cam0pixelsIdeal(3,:)];
@@ -156,7 +159,9 @@ cam1pixelsIdeal = [cam1pixelsIdeal(1,:)./cam1pixelsIdeal(3,:) ; cam1pixelsIdeal(
 
 cam2pixelsIdeal = K * cam2 * points3D;
 cam2pixelsIdeal = [cam2pixelsIdeal(1,:)./cam2pixelsIdeal(3,:) ; cam2pixelsIdeal(2,:)./cam2pixelsIdeal(3,:)];
-
+writematrix(cam0pixelsIdeal)
+writematrix(cam1pixelsIdeal)
+writematrix(cam2pixelsIdeal)
 %radial distortion:
 polyCoefs = [0.5,-0.5,1.5];
 
@@ -225,6 +230,7 @@ estimatedPoints = zeros(size(points3D));
 for i = 1:size(cam2pixelsIdeal,2)
     estimatedPoints(:,i) = RadialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted(:,i),cam1pixelDistorted(:,i),cam2pixelDistorted(:,i));
 end
+writematrix(estimatedPoints)
 err = norm(estimatedPoints - points3D);
 
 if(debug)
@@ -307,6 +313,7 @@ function [plane, ok] = GetPlaneFromPixel(cam,pixelDistorted)
 p0 = [ 0; 0; 0 ]; % camera center;
 p1 = [ 0; 0; 1 ]; %centerOfProjection plane;
 p2 = [ pixelDistorted(1); pixelDistorted(2); 1 ];
+
 R = cam(:,1:3);
 T = cam(:,4);
 p0 = R' * (p0 - T); 
@@ -318,7 +325,6 @@ ok = s(3,3) > 1e-5;
 plane = v(:,end);
 
 function [point3D, ok] = Get3planesIntersectionMultiview(planes)
-fprintf("%d",planes);
 [~, s, v] = svd(planes);
 ok = s(3,3) > 1e-5;
 point3D = v(:,end);
@@ -342,6 +348,7 @@ A = [plane0';plane1';plane2'];% 3x4
 [~, s, v] = svd(A);
 ok = s(3,3) > 1e-5;
 point3D = v(:,end);
+
 point3D = point3D/point3D(4);
 
 
