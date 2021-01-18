@@ -3,6 +3,14 @@ import numpy.linalg as la
 import radial_distortion_invariant as rdi
 
 def main():
+    """
+    synthetic simulation of 3d points estimation using the same random inputs as the matlab code
+    as you can see the estimation error of the matlab code and the python code are both in the same scale O(e^-13)
+
+    usage:
+        for using this python simulation, you need to run the matlab code from the directory and then run this code
+        otherwise the simulation will not run
+    """
     matlabEstimation=matrix_from_file('estimatedPoints.txt')
     cam0=matrix_from_file('cam0.txt')
     cam1=matrix_from_file('cam1.txt')
