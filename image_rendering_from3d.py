@@ -18,17 +18,17 @@ def main():
     c = 2 ** -0.5
 
 
-    Tx=-22 #verticle axis
-    Ty=-2 #horizontle axis
-    Tz=5 #height axis
-    Rx=np.pi/12
-    Ry=np.deg2rad(100)
+    Tx=2 #verticle axis
+    Ty=-8 #horizontle axis
+    Tz=1 #height axis
+    Rx=np.pi/8
+    Ry=np.deg2rad(180)
     Rz=0
     arr=[Tx,Tz,Ty,Rx,Ry,Rz]
     mat=rdi.calc_cam_mat_custom(arr)
     mat=np.vstack((mat,[0,0,0,1]))
     print(mat)
-    scene.add(mesh, pose=mat)
+    scene.add(mesh, pose=np.eye(4))
     scene.add(light, pose=mat)
     scene.add(camera, pose=mat)
     # render scene
