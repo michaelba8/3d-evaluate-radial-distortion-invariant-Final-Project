@@ -18,9 +18,10 @@ def main():
     idealPixeelCam0=matrix_from_file('cam0pixelsIdeal.txt')
     idealPixeelCam1 = matrix_from_file('cam1pixelsIdeal.txt')
     idealPixeelCam2 = matrix_from_file('cam2pixelsIdeal.txt')
-    #print(idealPixeelCam0)
     points3D=matrix_from_file('points3D.txt')
+    polyCoefs = [1000, 350, 12323]
     polyCoefs = [0.5, -0.5, 1.5]
+    print(points3D.shape)
     distortedPixelCam0=np.array(rdi.applyDistortion(idealPixeelCam0,polyCoefs))
     distortedPixelCam1=np.array(rdi.applyDistortion(idealPixeelCam1,polyCoefs))
     distortedPixelCam2=np.array(rdi.applyDistortion(idealPixeelCam2,polyCoefs))
@@ -31,13 +32,15 @@ def main():
     errP=mat-points3D
     errM=matlabEstimation-points3D
     print("python ",la.norm(errP))
-    print("Matlab" ,la.norm(errM))
+    print("Matlab " ,la.norm(errM))
+    print(errP.shape)
 
 
 
 def matrix_from_file(file_name):
     with open(file_name, 'r') as f:
         l = [[np.float64(num) for num in line.split(',')] for line in f]
+        f.close()
     return np.array(l,dtype=np.float64)
 
 

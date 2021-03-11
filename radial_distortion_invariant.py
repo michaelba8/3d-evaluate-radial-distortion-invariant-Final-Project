@@ -9,8 +9,7 @@ from scipy import linalg
 
 def getPlanesFromPixel(cam,pixel_distorted):
     """ WORKING!!!
-        need more tests
-        get an input of pixel(x,y) and camera matrix and return plane
+        get an input of pixel(x,y) and camera matrix and return a plane
         """
     p0=np.array([[0],[0],[0]])
     p1=np.array([[0],[0],[1]])
@@ -48,6 +47,26 @@ def calc_cam_mat(cam_params):
     cam_mat=np.hstack((R,t))
     return  cam_mat
 
+def calc_cam_mat_custom(cam_params):
+    """
+    get camera paramaters as a list with size=6
+    and return camera matrix 3X4
+    """
+    az = cam_params[5]
+    ro = cam_params[4]
+    pi = cam_params[3]
+    az_mat=np.array([[np.cos(az),-1*np.sin(az),0],[np.sin(az),np.cos(az),0],[0,0,1]])
+    ro_mat=np.array([[np.cos(ro),0,-1*np.sin(ro)],[0,1,0],[np.sin(ro),0,np.cos(ro)]])
+    pi_mat=np.array([[1,0,0],[0,np.cos(pi),-1*np.sin(pi)],[0,np.sin(pi),np.cos(pi)]])
+    R=ro_mat*pi_mat*az_mat
+    R=np.matmul(np.matmul(ro_mat,pi_mat),az_mat)
+    cam_params=np.array([cam_params])
+    t=cam_params[:,0:3].transpose()
+    cam_mat=np.hstack((R,t))
+    return  cam_mat
+
+
+
 def applyDistortion(idealPixels,polyCoefs):
     """create distortion"""
     ideal_pixel_radius=(idealPixels[0,:]**2+idealPixels[1,:]**2)**(0.5)
@@ -60,14 +79,6 @@ def applyDistortion(idealPixels,polyCoefs):
     return distorted_pixels
 
 
-
-
-
-def getRandomCamera(T):
-    pass
-
-def calc_points_3d(points1,points2,points3):
-    pass
 
 def tl2cen(points, size):
     """
@@ -134,10 +145,6 @@ def get3planesIntersection(plane0,plane1,plane2):
     return point3D, ok
 
 
-
-def make_of_from_box_corners():
-    pass
-
 def  radialDistortionInvariant3dEstimationMultiview(cams,camsPixelDistorted):
     """
     this function takes 3 pixels of the same 3D point and the 3 camera
@@ -148,5 +155,4 @@ def  radialDistortionInvariant3dEstimationMultiview(cams,camsPixelDistorted):
     :param camsPixelDistorted:
     :return:
     """
-
     pass
