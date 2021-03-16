@@ -11,14 +11,14 @@ def main():
         for using this python simulation, you need to run the matlab code from the directory and then run this code
         otherwise the simulation will not run
     """
-    matlabEstimation=matrix_from_file('estimatedPoints.txt')
-    cam0=matrix_from_file('cam0.txt')
-    cam1=matrix_from_file('cam1.txt')
-    cam2 = matrix_from_file('cam2.txt')
-    idealPixeelCam0=matrix_from_file('cam0pixelsIdeal.txt')
-    idealPixeelCam1 = matrix_from_file('cam1pixelsIdeal.txt')
-    idealPixeelCam2 = matrix_from_file('cam2pixelsIdeal.txt')
-    points3D=matrix_from_file('points3D.txt')
+    matlabEstimation=matrix_from_file('Matlab Code/estimatedPoints.txt')
+    cam0=matrix_from_file('Matlab Code/cam0.txt')
+    cam1=matrix_from_file('Matlab Code/cam1.txt')
+    cam2 = matrix_from_file('Matlab Code/cam2.txt')
+    idealPixeelCam0=matrix_from_file('Matlab Code/cam0pixelsIdeal.txt')
+    idealPixeelCam1 = matrix_from_file('Matlab Code/cam1pixelsIdeal.txt')
+    idealPixeelCam2 = matrix_from_file('Matlab Code/cam2pixelsIdeal.txt')
+    points3D=matrix_from_file('Matlab Code/points3D.txt')
     polyCoefs = [1000, 350, 12323]
     polyCoefs = [0.5, -0.5, 1.5]
     print(points3D.shape)
