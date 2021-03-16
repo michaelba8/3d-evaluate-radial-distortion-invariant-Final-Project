@@ -9,7 +9,7 @@ def main():
        the images need to be saved manually because finding the perfect view might take few tries
        the images render using Camera matrix just like in the algorithm using closed function so
        we can use the images for testing later"""
-    temp=trimesh.load('files/iron man.obj',force='mesh',process=False)
+    temp=trimesh.load('files/shelby.obj',force='mesh',process=False)
     mesh = pyrender.Mesh.from_trimesh(temp, smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
 
@@ -18,11 +18,11 @@ def main():
     c = 2 ** -0.5
 
 
-    Tx=0 #verticle axis
-    Ty=1 #horizontle axis
-    Tz=7 #height axis
-    Rx=np.deg2rad(-90)
-    Ry=np.deg2rad(0)
+    Tx=2 #verticle axis
+    Ty=-8 #horizontle axis
+    Tz=1 #height axis
+    Rx=np.pi*1/8
+    Ry=np.deg2rad(180)
     Rz=np.deg2rad(0)
     arr=[Tx,Tz,Ty,Rx,Ry,Rz]
     mat=rdi.calc_cam_mat_custom(arr)
