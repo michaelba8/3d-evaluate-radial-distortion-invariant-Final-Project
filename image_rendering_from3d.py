@@ -3,31 +3,43 @@ import radial_distortion_invariant as rdi
 import matplotlib.pyplot as plt
 import trimesh
 import pyrender
+import cv2
+import os
+
 
 def main():
     """in this file we load 3d model and project 3 different images from 3 different views
        the images need to be saved manually because finding the perfect view might take few tries
        the images render using Camera matrix just like in the algorithm using closed function so
        we can use the images for testing later"""
-    temp=trimesh.load('files/shelby.obj',force='mesh',process=False)
+
+    to_save=True
+    image_name='image6.png'
+    model_path='files/iron man.obj'
+    folder_result = "projection results\iron man"
+    cur_dir=os.path.dirname(__file__)
+
+
+
+
+
+    temp=trimesh.load(model_path,force='mesh',process=False)
     mesh = pyrender.Mesh.from_trimesh(temp, smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
 
     camera = pyrender.PerspectiveCamera(yfov=np.pi/3 ,aspectRatio=1)
     light = pyrender.DirectionalLight(color=[1, 1, 1], intensity=500)
-    c = 2 ** -0.5
 
-
-    Tx=2 #verticle axis
-    Ty=-8 #horizontle axis
-    Tz=1 #height axis
-    Rx=np.pi*1/8
-    Ry=np.deg2rad(180)
+    Tx=0 #verticle axis
+    Ty=1 #horizontle axis
+    Tz=7 #height axis
+    Rx=np.deg2rad(-90)
+    Ry=np.deg2rad(0)
     Rz=np.deg2rad(0)
     arr=[Tx,Tz,Ty,Rx,Ry,Rz]
     mat=rdi.calc_cam_mat_custom(arr)
     mat=np.vstack((mat,[0,0,0,1]))
-    print(mat)
+
     scene.add(mesh, pose=np.eye(4))
     scene.add(light, pose=mat)
     scene.add(camera, pose=mat)
@@ -35,9 +47,41 @@ def main():
     r = pyrender.OffscreenRenderer(512, 512)
     color, _ = r.render(scene)
     title='Tx='+str(Tx)+', Ty='+str(Ty)+', Tz='+str(Tz)+', Rx='+str(np.rad2deg(Rx))+ ' deg, Ry=' + str(np.rad2deg(Ry)) + ' deg, Rz=' +str(np.rad2deg(Rz))+ ' deg'
+
+
+    cv2.imshow('sds',color)
+    cv2.waitKey()
+    t=os.path.join(cur_dir,folder_result)
+    os.chdir(os.path.join(cur_dir,folder_result))
+    if(to_save):
+        cv2.imwrite(image_name,color)
+
     plt.figure(figsize=(8, 8)),plt.imshow(color);
     plt.suptitle(title)
     plt.show()
+
+    if(to_save):
+        f = open(t+"/cam matrices.txt", "a")
+        f.write(image_name)
+        f.write(':  ')
+        f.write(title)
+        f.write('\n')
+        f.close()
+
+
+
+
+def read_images(folder):
+    """Reading all the image from folder"""
+    images = []
+    for filename in os.listdir(folder):
+        img = cv2.imread(filename,0)
+        if img is not None:
+            images.append(img)
+
+    return images
+
+
 
 if __name__=='__main__':
    main()
