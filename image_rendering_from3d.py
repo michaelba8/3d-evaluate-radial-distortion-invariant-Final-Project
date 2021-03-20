@@ -8,12 +8,19 @@ import os
 
 
 def main():
-    """in this file we load 3d model and project 3 different images from 3 different views
-       the images need to be saved manually because finding the perfect view might take few tries
+    """in this file we load 3d model and project 3 or more different images from multiply different views
+       some attributes at the start of the code have to be initalised:
+       #image_name= the output image name if saved
+       #model_path= the path of the model file we project
+       folder_results= the folder that the results will be saved on
+       #to_save (boolean):  if False the program will only show the resulted image but will not save anything (for debugging)
+
+       in the folder results we also write the camera matrices into a text file called 'cam matices.txt'
+
        the images render using Camera matrix just like in the algorithm using closed function so
        we can use the images for testing later"""
 
-    to_save=True
+    to_save=False
     image_name='image6.png'
     model_path='files/iron man.obj'
     folder_result = "projection results\iron man"

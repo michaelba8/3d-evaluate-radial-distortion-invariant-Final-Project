@@ -4,3 +4,4 @@ image3.png:  Tx=-10, Ty=4, Tz=0, Rx=0.0 deg, Ry=70.0 deg, Rz=0.0 deg
 image4.png:  Tx=9, Ty=3, Tz=0, Rx=-20.0 deg, Ry=280.0 deg, Rz=0.0 deg
 image5.png:  Tx=0, Ty=6, Tz=0, Rx=-20.0 deg, Ry=0.0 deg, Rz=0.0 deg
 image6.png:  Tx=0, Ty=1, Tz=7, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
+

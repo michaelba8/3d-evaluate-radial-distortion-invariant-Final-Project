@@ -4,16 +4,15 @@ from wand.image import Image
 import os
 
 def main():
-    path="projection results\car2/4.png"
-    imgs=read_images("projection results\iron man")
+    path="projection results\iron man/image5.png"
 
     img = cv2.imread(path)
-    coef=(0.5,0,0,1)
+    coef=(0.15,0,0,1)
     newimg=apply_distortion_lib(path,coef)
 
     # Display old and new image
-    cv2.imshow('old',img)
-    cv2.imshow('new',newimg)
+    cv2.imshow('ideal',img)
+    cv2.imshow('distorted',newimg)
     cv2.waitKey()
 
 
@@ -23,7 +22,7 @@ def main():
 def apply_distortion_lib(path,coef=(0.5, 0.0, 0.0, 1.0)):
     with Image(filename=path) as img:
         print(img.size)
-        img.virtual_pixel = 'transparent'
+        #img.virtual_pixel = 'transparent'
         img.distort('barrel', coef)
         img_opencv = np.array(img)
 
