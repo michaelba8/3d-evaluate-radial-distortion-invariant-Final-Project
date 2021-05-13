@@ -1,7 +1,10 @@
-image1.png:  Tx=-10, Ty=12, Tz=0, Rx=0.0 deg, Ry=45.0 deg, Rz=0.0 deg
-image2.png:  Tx=-10, Ty=4, Tz=0, Rx=0.0 deg, Ry=59.99999999999999 deg, Rz=0.0 deg
-image3.png:  Tx=-10, Ty=4, Tz=0, Rx=0.0 deg, Ry=70.0 deg, Rz=0.0 deg
+cx,cy=256 #camera center
+fx,fy=300 #camera "zoom"
+image0.png:  Tx=-10, Ty=4, Tz=0, Rx=0.0 deg, Ry=70.0 deg, Rz=0.0 deg
+image1.png:  Tx=0, Ty=6, Tz=0, Rx=-20.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image2.png:  Tx=-10, Ty=12, Tz=0, Rx=0.0 deg, Ry=45.0 deg, Rz=0.0 deg
+image3.png:  Tx=-10, Ty=4, Tz=0, Rx=0.0 deg, Ry=59.99999999999999 deg, Rz=0.0 deg
 image4.png:  Tx=9, Ty=3, Tz=0, Rx=-20.0 deg, Ry=280.0 deg, Rz=0.0 deg
-image5.png:  Tx=0, Ty=6, Tz=0, Rx=-20.0 deg, Ry=0.0 deg, Rz=0.0 deg
-image6.png:  Tx=0, Ty=1, Tz=7, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
-
+image5.png:  Tx=0, Ty=1, Tz=7, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image6.png:  Tx=0, Ty=20, Tz=0, Rx=0.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image7.png:  Tx=5, Ty=20, Tz=0, Rx=0.0 deg, Ry=0.0 deg, Rz=0.0 deg

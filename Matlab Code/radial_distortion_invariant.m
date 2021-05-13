@@ -12,7 +12,7 @@ points3D(1,:) = points3D(1,:) - 0.5;
 points3D(2,:) = points3D(2,:) - 0.5;
 points3D(3,:) = points3D(3,:) + 2;
 
-K = eye(3);
+K = eye(3)*3;
 cam0 = [eye(3) [0 ;0 ;0]];
 a =  0.17;
 cam1 = [1,      0,     0, 0;...

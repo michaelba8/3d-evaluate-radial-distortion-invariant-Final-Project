@@ -15,11 +15,12 @@ def main():
     cam0=matrix_from_file('Matlab Code/cam0.txt')
     cam1=matrix_from_file('Matlab Code/cam1.txt')
     cam2 = matrix_from_file('Matlab Code/cam2.txt')
+
     idealPixeelCam0=matrix_from_file('Matlab Code/cam0pixelsIdeal.txt')
     idealPixeelCam1 = matrix_from_file('Matlab Code/cam1pixelsIdeal.txt')
     idealPixeelCam2 = matrix_from_file('Matlab Code/cam2pixelsIdeal.txt')
     points3D=matrix_from_file('Matlab Code/points3D.txt')
-    polyCoefs = [1000, 350, 12323]
+
     polyCoefs = [0.5, -0.5, 1.5]
     print(points3D.shape)
     distortedPixelCam0=np.array(rdi.applyDistortion(idealPixeelCam0,polyCoefs))

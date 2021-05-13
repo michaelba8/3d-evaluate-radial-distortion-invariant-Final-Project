@@ -60,6 +60,7 @@ def calc_cam_mat_custom(cam_params):
     pi_mat=np.array([[1,0,0],[0,np.cos(pi),-1*np.sin(pi)],[0,np.sin(pi),np.cos(pi)]])
     R=ro_mat*pi_mat*az_mat
     R=np.matmul(np.matmul(ro_mat,pi_mat),az_mat)
+#    R=np.matmul(np.matmul(pi_mat,ro_mat),az_mat)
     cam_params=np.array([cam_params])
     t=cam_params[:,0:3].transpose()
     cam_mat=np.hstack((R,t))
@@ -78,7 +79,16 @@ def applyDistortion(idealPixels,polyCoefs):
     distorted_pixels=np.vstack((first,second))
     return distorted_pixels
 
+def applyDistortionSingleP(idealPixels,polyCoefs):
+    """create distortion"""
+    ideal_pixel_radius=(idealPixels[0]**2+idealPixels[1]**2)**(0.5)
 
+    distorted_pixel_radius=polyCoefs[0]*np.power(ideal_pixel_radius,5) +polyCoefs[1]*np.power(ideal_pixel_radius,3)+ideal_pixel_radius*polyCoefs[2]
+    cam_radius_ratio=distorted_pixel_radius/ideal_pixel_radius
+    first=idealPixels[0]*cam_radius_ratio
+    second=idealPixels[1]*cam_radius_ratio
+    distorted_pixels=np.vstack((first,second))
+    return distorted_pixels
 
 def tl2cen(points, size):
     """
@@ -155,4 +165,14 @@ def  radialDistortionInvariant3dEstimationMultiview(cams,camsPixelDistorted):
     :param camsPixelDistorted:
     :return:
     """
-    pass
+    nCams=cams.shape[0]
+    planes=np.zeros((nCams,1,4))
+    success=True
+    for i in range(nCams):
+        p,ok=getPlanesFromPixel(cams[i,:,:],camsPixelDistorted[i,:])
+        planes[i, :]=p.T
+        success=success and ok
+    result,ok=get3planesIntersectionMultiview(planes)
+    success=success and ok
+    return result,success
+
