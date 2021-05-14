@@ -18,7 +18,7 @@ def main():
     mesh=trimesh.creation.box((3,1,5))
     ver=np.hstack((mesh.vertices,np.ones((8,1))))
     top_left=ver[3]
-    print('cube vertices:\n',ver)
+    #print('cube vertices:\n',ver)
     cam1,cam2,cam3,cam4=get_cameras()
     cam1t=np.vstack((cam1,[0,0,0,1]))
     cam2t=np.vstack((cam2,[0,0,0,1]))
@@ -57,11 +57,18 @@ def main():
     p134,ok=pe.estimate_3d_point(cam1,cam3,cam4,p1,p3,p4)
     p234,ok=pe.estimate_3d_point(cam2,cam3,cam4,p2,p3,p4)
     p=np.array([[-1.5],[0.5],[2.5],[1.0]])
+
     print('images 1,2,3:\n',p123,'\nnorm of the error:',np.linalg.norm(p123-p))
     print('images 1,2,4:\n',p124,'\nnorm of the error:',np.linalg.norm(p124-p))
     print('images 1,3,4:\n',p134,'\nnorm of the error:',np.linalg.norm(p134-p))
     print('images 2,3,4:\n',p234,'\nnorm of the error:',np.linalg.norm(p234-p))
+    print()
 
+    cams=np.array([cam1,cam2,cam3,cam4])
+    pixels=np.array([p1,p2,p3,p4])
+    res,ok=pe.estimate_3d_point_mv(cams,pixels)
+    print('images 1,2,3,4 multiview:\n',res,'\nnorm of the error:',np.linalg.norm(res-p))
+    print()
     return
     """
     p1=np.array([248,496])

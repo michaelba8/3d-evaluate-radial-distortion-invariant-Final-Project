@@ -117,7 +117,6 @@ def get3planesIntersectionMultiview(planes):
     point3D = v(:,end);
     point3D = point3D/point3D(4);
     """
-
     u,s,v=la.svd(planes)
     ok=s[2]>10**(-5)
     v=v.transpose()
@@ -125,7 +124,17 @@ def get3planesIntersectionMultiview(planes):
     point3D=point3D/point3D[3]
     return point3D,ok
 
-
+def get3planesIntersection(plane0,plane1,plane2):
+    p0t=plane0.T
+    p1t=plane1.T
+    p2t=plane2.T
+    A=np.vstack((p0t,p1t,p2t))
+    u,s,v=la.svd(A)
+    ok = s[2] > 10 ** (-5)
+    v = v.transpose()
+    point3D = v[:, -1]
+    point3D = point3D / point3D[3]
+    return point3D, ok
 
 def radialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted,cam1pixelDistorted,cam2pixelDistorted):
     """
@@ -141,18 +150,6 @@ def radialDistortionInvariant3dEstimation(cam0,cam1,cam2,cam0pixelDistorted,cam1
     success=ok0 and ok1 and ok2 and ok3
     return res,success
 
-def get3planesIntersection(plane0,plane1,plane2):
-    p0t=plane0.T
-    p1t=plane1.T
-    p2t=plane2.T
-    A=np.vstack((p0t,p1t,p2t))
-    u,s,v=la.svd(A)
-    ok = s[2] > 10 ** (-5)
-    v = v.transpose()
-    point3D = v[:, -1]
-    point3D = point3D / point3D[3]
-
-    return point3D, ok
 
 
 def  radialDistortionInvariant3dEstimationMultiview(cams,camsPixelDistorted):
@@ -163,16 +160,16 @@ def  radialDistortionInvariant3dEstimationMultiview(cams,camsPixelDistorted):
     ray is looking at the same 3D point or are parallel.
     :param cams:
     :param camsPixelDistorted:
-    :return:
     """
-    nCams=cams.shape[0]
-    planes=np.zeros((nCams,1,4))
+    cam_num=cams.shape[0]
+    planes=np.zeros((cam_num,4))
     success=True
-    for i in range(nCams):
-        p,ok=getPlanesFromPixel(cams[i,:,:],camsPixelDistorted[i,:])
-        planes[i, :]=p.T
-        success=success and ok
+    for i in range(cam_num):
+        p,ok=getPlanesFromPixel(cams[i],camsPixelDistorted[i])
+        planes[i,:]=p.T
+        success=ok and success
     result,ok=get3planesIntersectionMultiview(planes)
     success=success and ok
-    return result,success
+    return result, success
+
 

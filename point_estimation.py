@@ -12,7 +12,15 @@ def main():
 
 
 
-
+def estimate_3d_point_mv(cams,pixels,width=512,height=512):
+    rp=np.float32(pixels)
+    rcams=np.array(cams)
+    for i,pixel in enumerate(pixels):
+        rp[i]=reverse_from_pixel(pixel,width,height)
+    for i,cam in enumerate(cams):
+        rcams[i]=inv_cam_mat(cam)
+    res,ok=rdi.radialDistortionInvariant3dEstimationMultiview(rcams,rp)
+    return np.float32([res]).T,ok
 def estimate_3d_point(cam1,cam2,cam3,pixel1,pixel2,pixel3,width=512,height=512):
     rp1=reverse_from_pixel(pixel1,width,height)
     rp2=reverse_from_pixel(pixel2,width,height)
