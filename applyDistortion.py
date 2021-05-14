@@ -4,14 +4,15 @@ from wand.image import Image
 import os
 
 def main():
-    to_save=True
-    image_name='image3distorted.png'
-    folder_result = "projection results\iron man"
+    to_save=False
+    image_name='image4distorted.png'
+    folder_result = "projection results\\test2"
     cur_dir=os.path.dirname(__file__)
-    path="projection results\iron man/image3.png"
+    path="projection results\\test2\\image4.png"
 
     img = cv2.imread(path)
-    coef=(0.2,0,0,1)
+    coef=(0.5,0.5,0.5,1)
+    coef=(0,0,0,1)
     newimg=apply_distortion(path,coef)
 
     # Display old and new image
@@ -20,7 +21,7 @@ def main():
     cv2.waitKey()
     os.chdir(os.path.join(cur_dir, folder_result))
     if (to_save):
-        cv2.imwrite(image_name, newimg)
+        print(cv2.imwrite(image_name, newimg))
 
 
 
@@ -30,7 +31,7 @@ def apply_distortion(path,coef=(0.8, 0.0, 0.0, 1.0)):
     with Image(filename=path) as img:
         print(img.size)
         img.virtual_pixel = 'transparent'
-        img.distort('barrel', coef)
+        img.distort('barrel', coef,best_fit=True)
         img_opencv = np.array(img)
 
     return img_opencv
