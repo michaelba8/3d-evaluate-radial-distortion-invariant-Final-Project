@@ -2,3 +2,6 @@ image2.png:  Tx=3, Ty=4, Tz=10, Rx=-14.999999999999998 deg, Ry=-14.9999999999999
 image1.png:  Tx=-3, Ty=3, Tz=-8, Rx=-14.999999999999998 deg, Ry=150.0 deg, Rz=0.0 deg
 image3.png:  Tx=-9, Ty=3, Tz=-2, Rx=-14.999999999999998 deg, Ry=100.0 deg, Rz=0.0 deg
 image4.png:  Tx=1, Ty=10, Tz=1, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image5.png:  Tx=-1, Ty=10, Tz=-1, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image6.png:  Tx=7, Ty=3, Tz=5, Rx=-14.999999999999998 deg, Ry=-55.0 deg, Rz=0.0 deg
+

@@ -22,39 +22,40 @@ def main():
        we can use the images for testing later"""
 
     to_save=False
-    image_name='image7.png'
-    model_path='files/iron man.obj'
-    folder_result = "projection results\iron man"
+    image_name='image9.png'
+    model_path='files/deer.obj'
+    folder_result = "projection results/deer"
     cur_dir=os.path.dirname(__file__)
     zfar=100
     znear=0.1
     focal_len=300
     size=512
     temp=trimesh.load(model_path,force='mesh',process=False)
-    mesh = pyrender.Mesh.from_trimesh(temp, smooth=False)
+    mesh = pyrender.Mesh.from_trimesh(temp ,smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
 
     camera = pyrender.PerspectiveCamera(yfov=np.pi/3 ,aspectRatio=1)
     light = pyrender.DirectionalLight(color=[1, 1, 1], intensity=500)
 
-    Tx=5 #verticle axis
-    Ty=20 #horizontle axis
-    Tz=0 #height axis
+    Tx=0 #verticle axis
+    Ty=250 #horizontle axis
+    Tz=150 #height axis
     Rx=np.deg2rad(0)
     Ry=np.deg2rad(0)
     Rz=np.deg2rad(0)
     arr=[Tx,Tz,Ty,Rx,Ry,Rz]
     mat=rdi.calc_cam_mat_custom(arr)
     mat=np.vstack((mat,[0,0,0,1]))
-
+    T=np.hstack((np.eye(3),np.array([mesh.centroid]).T))
+    T=np.vstack((T,[0,0,0,1]))
+    print(inv(T))
     scene.add(mesh, pose=np.eye(4))
     scene.add(light, pose=mat)
     scene.add(camera, pose=mat)
     # render scene
-    r = pyrender.OffscreenRenderer(512, 512)
+    r = pyrender.OffscreenRenderer(512, 512,point_size=1)
     color, _ = r.render(scene)
     title='Tx='+str(Tx)+', Ty='+str(Ty)+', Tz='+str(Tz)+', Rx='+str(np.rad2deg(Rx))+ ' deg, Ry=' + str(np.rad2deg(Ry)) + ' deg, Rz=' +str(np.rad2deg(Rz))+ ' deg'
-    test = camera.get_projection_matrix(size, size)
 
     cv2.imshow('sds',color)
     cv2.waitKey()
@@ -63,9 +64,6 @@ def main():
     if(to_save):
         cv2.imwrite(image_name,color)
 
-    plt.figure(figsize=(8, 8)),plt.imshow(color);
-    plt.suptitle(title)
-    plt.show()
 
     if(to_save):
         f = open(t+"/cam matrices.txt", "a")
@@ -74,7 +72,7 @@ def main():
         f.write(title)
         f.write('\n')
         f.close()
-
+    print(camera.get_projection_matrix())
 
 
 
@@ -88,7 +86,12 @@ def read_images(folder):
 
     return images
 
-
+def map_to_pixel(point3d,w,h,projection,view):
+    p=projection@inv(view)@point3d.T
+    p=p/p[3]
+    p[0]=(w/2*p[0]+w/2)
+    p[1]=h-(h/2*p[1]+h/2)
+    return p
 
 if __name__=='__main__':
    main()

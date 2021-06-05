@@ -22,16 +22,16 @@ def main():
        we can use the images for testing later"""
 
     to_save=False
-    image_name='image4.png'
-    model_path='files/iron man.obj'
+    image_name='image6.png'
+    model_path='files/deer.obj'
     folder_result = "projection results\\test2"
     cur_dir=os.path.dirname(__file__)
     zfar=100
     znear=0.1
     focal_len=300
     size=512
-    #temp=trimesh.load(model_path,force='mesh',process=False)
-    temp=trimesh.creation.box((3,1,5))
+    temp=trimesh.load(model_path,process=False)
+    #temp=trimesh.creation.box((3,1,5))
     mesh = pyrender.Mesh.from_trimesh(temp, smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
     #pm=np.array([[2* focal_len /size,0,0,0],[0,-2*focal_len/size,0,0],[0,0,(zfar+znear)/(zfar-znear),-1],[0,0,2*(zfar+znear)/(zfar-znear),0]])
@@ -43,39 +43,15 @@ def main():
     point3d=np.array([1,1.5,-2,1]).T
 
     """cam1"""
-    Tx=1 #verticle axis
-    Ty=10 #horizontle axis
-    Tz=1 #height axis
-    Rx=np.deg2rad(-90)
-    Ry=np.deg2rad(0)
+    Tx=95 #verticle axis
+    Ty=-270 #horizontle axis
+    Tz=130 #height axis
+    Rx=np.deg2rad(-10)
+    Ry=np.deg2rad(210)
     Rz=np.deg2rad(0)
     arr=[Tx,Ty,Tz,Rx,Ry,Rz]
     cam1 = rdi.calc_cam_mat_custom(arr)
     cam1t=np.vstack((cam1,[0,0,0,1]))
-    """
-    #
-    Tx = -4  # verticle axis
-    Ty = 8  # horizontle axis
-    Tz = 0  # height axis
-    Rx = np.deg2rad(-60)
-    Ry = np.deg2rad(0)
-    Rz = np.deg2rad(0)
-    arr = [Tx, Ty, Tz, Rx, Ry, Rz]
-    cam3 = rdi.calc_cam_mat_custom(arr)
-    cam3t=np.vstack((cam3,[0,0,0,1]))
-
-    
-    #cam3
-    Tx = 3  # verticle axis
-    Ty = 4  # height axis
-    Tz = 10  # depth axis
-    Rx = np.deg2rad(-15)
-    Ry = np.deg2rad(-15)
-    Rz = np.deg2rad(0)
-    arr = [Tx, Ty, Tz, Rx, Ry, Rz]
-    cam4 = rdi.calc_cam_mat_custom(arr)
-    cam4t=np.vstack((cam4,[0,0,0,1]))
-    """
 
     mat=rdi.calc_cam_mat_custom(arr)
     mat=np.vstack((mat,[0,0,0,1]))

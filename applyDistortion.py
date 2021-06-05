@@ -4,15 +4,14 @@ from wand.image import Image
 import os
 
 def main():
-    to_save=False
-    image_name='image4distorted.png'
-    folder_result = "projection results\\test2"
+    to_save=True
+    image_name='image8distorted.png'
+    folder_result = "projection results\\deer"
     cur_dir=os.path.dirname(__file__)
-    path="projection results\\test2\\image4.png"
+    path="projection results\\deer\\image8.png"
 
     img = cv2.imread(path)
     coef=(0.5,0.5,0.5,1)
-    coef=(0,0,0,1)
     newimg=apply_distortion(path,coef)
 
     # Display old and new image
