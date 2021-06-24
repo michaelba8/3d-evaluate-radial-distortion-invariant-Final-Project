@@ -72,7 +72,7 @@ def applyDistortion(idealPixels,polyCoefs):
     """create distortion"""
     ideal_pixel_radius=(idealPixels[0,:]**2+idealPixels[1,:]**2)**(0.5)
 
-    distorted_pixel_radius=polyCoefs[0]*np.power(ideal_pixel_radius,5) +polyCoefs[1]*np.power(ideal_pixel_radius,3)+ideal_pixel_radius*polyCoefs[2]
+    distorted_pixel_radius=polyCoefs[0]*np.power(ideal_pixel_radius,3) +polyCoefs[1]*np.power(ideal_pixel_radius,2)+ideal_pixel_radius*polyCoefs[2]
     cam_radius_ratio=distorted_pixel_radius/ideal_pixel_radius
     first=idealPixels[0,:]*cam_radius_ratio
     second=idealPixels[1,:]*cam_radius_ratio
@@ -87,7 +87,8 @@ def applyDistortionSingleP(idealPixels,polyCoefs):
     cam_radius_ratio=distorted_pixel_radius/ideal_pixel_radius
     first=idealPixels[0]*cam_radius_ratio
     second=idealPixels[1]*cam_radius_ratio
-    distorted_pixels=np.vstack((first,second))
+    #distorted_pixels=np.vstack((first,second))
+    distorted_pixels=np.float32([first,second])
     return distorted_pixels
 
 def tl2cen(points, size):

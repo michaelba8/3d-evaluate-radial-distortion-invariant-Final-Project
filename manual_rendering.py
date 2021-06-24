@@ -22,15 +22,13 @@ def main():
        we can use the images for testing later"""
 
     to_save = False
-    image_name = 'image6.png'
+    image_name = 'vertices.png'
     model_path = 'files/deer.obj'
-    folder_result = "projection results/test2"
+    folder_result = "projection results/deer"
     cur_dir = os.path.dirname(__file__)
     zfar = 100
     size = 512
     temp=trimesh.load(model_path,process=False)
-    #temp = trimesh.creation.box((2, 3, 1))
-    #temp.apply_translation([-1, -2, 1])
     mesh = pyrender.Mesh.from_trimesh(temp, smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
     alpha = np.pi / 3
@@ -38,11 +36,11 @@ def main():
     light = pyrender.DirectionalLight(color=[1, 1, 1], intensity=500)
 
     """cam1"""
-    Tx = 200  # verticle axis
-    Ty = 250  # horizontle axis
-    Tz = 350  # height axis
-    Rx = np.deg2rad(-25)
-    Ry = np.deg2rad(-20)
+    Tx = 95  # verticle axis
+    Ty = 130  # horizontle axis
+    Tz = -270  # height axis
+    Rx = np.deg2rad(-10)
+    Ry = np.deg2rad(210)
     Rz = np.deg2rad(0)
     arr = [Tx, Ty, Tz, Rx, Ry, Rz]
     cam1 = rdi.calc_cam_mat_custom(arr)
@@ -54,9 +52,6 @@ def main():
     proj = camera.get_projection_matrix(size, size)
     r = pyrender.OffscreenRenderer(size, size,point_size=1)
     color, _ = r.render(scene)
-    title = 'Tx=' + str(Tx) + ', Ty=' + str(Ty) + ', Tz=' + str(Tz) + ', Rx=' + str(np.rad2deg(Rx)) + ' deg, Ry=' + str(
-        np.rad2deg(Ry)) + ' deg, Rz=' + str(np.rad2deg(Rz)) + ' deg'
-
     vertices = temp.vertices
     vertices = np.hstack((vertices, np.ones((vertices.shape[0], 1))))
     sim = mark_corners(vertices, proj, cam1t, color)
@@ -65,19 +60,13 @@ def main():
     t = os.path.join(cur_dir, folder_result)
     os.chdir(os.path.join(cur_dir, folder_result))
     if (to_save):
-        cv2.imwrite(image_name, color)
+        cv2.imwrite(image_name, sim)
 
-    if (to_save):
-        f = open(t + "/cam matrices.txt", "a")
-        f.write(image_name)
-        f.write(':  ')
-        f.write(title)
-        f.write('\n')
-        f.close()
 
 
 def simulate_rendering(ver, projection, view):
     vertices = map_to_pixel(ver, 512, 512, projection, view).T
+    print(vertices)
     img = np.zeros((512, 512), dtype=np.uint8)
     for pixel in vertices:
         if(pixel[0]<0 or pixel[0]>=512 or pixel[1]<0 or pixel[1]>=512):
@@ -89,7 +78,22 @@ def simulate_rendering(ver, projection, view):
     img = cv2.dilate(img, np.ones((3, 3)))
     return img
 
-
+def apply_dis(img,coef=(0.5,0.5,0.5)):
+    w=512
+    h=512
+    res=np.zeros(img.shape)
+    i_pixels=range(h)
+    j_pixels=range(w)
+    for i in i_pixels:
+        for j in j_pixels:
+            tmp=np.array([i,j])
+            rev_p=reverse_from_pixel(tmp,w,h)
+            p=rdi.applyDistortionSingleP(rev_p,coef)
+            p[0] = (w / 2 * p[0] + w / 2)
+            p[1] = h - (h / 2 * p[1] + h / 2)
+            res[int(p[1]),int(p[0])]=img[j,i]
+    cv2.imshow('res',res)
+    cv2.waitKey()
 def mark_corners(ver, projection, view, org_img):
     img = simulate_rendering(ver, projection, view)
     res = np.array(org_img)

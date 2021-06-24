@@ -1,5 +1,0 @@
-
-image2.png:  Tx=0, Ty=0, Tz=4, Rx=0.0 deg, Ry=0.0 deg, Rz=0.0 deg
-image1.png:  Tx=0, Ty=1, Tz=-4, Rx=-14.999999999999998 deg, Ry=180.0 deg, Rz=0.0 deg
-image3.png:  Tx=1, Ty=1, Tz=4, Rx=-14.999999999999998 deg, Ry=-14.999999999999998 deg, Rz=0.0 deg
-image4.png:  Tx=0, Ty=1, Tz=4, Rx=-14.999999999999998 deg, Ry=0.0 deg, Rz=0.0 deg

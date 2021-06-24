@@ -2,29 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae41278-2221-4ef2-904f-9b82a5dbdc36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/micha.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_deer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_iron_man.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trinagulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/3d-evaluate-radial-distortion-invariant-Final-Project-main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3d-evaluate-radial-distortion-invariant-Final-Project-main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/render_vertices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applyDistortion.py" beforeDir="false" afterPath="$PROJECT_DIR$/applyDistortion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image_rendering_from3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_rendering_from3d.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_rendering.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_rendering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/open3d_rendering.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/point_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/point_estimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projection results/iron man/cam matrices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/iron man/cam matrices.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/image1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test1/image1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test1/image3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test1/image4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/New Text Document.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/cam matrices.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/image1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/image2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/image3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/image4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/test/projection matrix.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/projection results/test2/cam matrices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/test2/cam matrices.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solve_projection.py" beforeDir="false" afterPath="$PROJECT_DIR$/solve_projection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/radial_distortion_invariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/radial_distortion_invariant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_deer.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_deer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +116,28 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.manual_rendering">
+  <component name="RunManager" selected="Python.test_deer">
+    <configuration name="applyDistortion" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/applyDistortion.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="image_rendering_from3d" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -163,7 +180,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="render_vertices" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -175,7 +192,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/render_vertices.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -184,28 +201,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/projection results" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/projection results/test2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="trinagulation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_deer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -217,7 +213,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trinagulation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_deer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -228,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_deer" />
+        <item itemvalue="Python.render_vertices" />
         <item itemvalue="Python.manual_rendering" />
         <item itemvalue="Python.image_rendering_from3d" />
-        <item itemvalue="Python.test2" />
-        <item itemvalue="Python.test1" />
-        <item itemvalue="Python.trinagulation" />
+        <item itemvalue="Python.applyDistortion" />
       </list>
     </recent_temporary>
   </component>
@@ -430,7 +426,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621012911704</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fixed revrse_from_pixel&#10;added many scripts">
+      <created>1622886422594</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1622886422594</updated>
+    </task>
+    <task id="LOCAL-00028" summary="manual rendering simulation to validate rendering">
+      <created>1622886502789</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1622886502789</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -472,7 +482,9 @@
     <MESSAGE value="apply distortion works" />
     <MESSAGE value="a lot of changes and tests!!" />
     <MESSAGE value="fixed multiview and tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed multiview and tested" />
+    <MESSAGE value="fixed revrse_from_pixel&#10;added many scripts" />
+    <MESSAGE value="manual rendering simulation to validate rendering" />
+    <option name="LAST_COMMIT_MESSAGE" value="manual rendering simulation to validate rendering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -494,13 +506,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/image_rendering_from3d.py</url>
-          <line>67</line>
+          <line>63</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test_deer.py</url>
-          <line>55</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/trinagulation.py</url>
@@ -509,8 +516,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/manual_rendering.py</url>
-          <line>65</line>
-          <option name="timeStamp" value="38" />
+          <line>90</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/render_vertices.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/render_vertices.py</url>
+          <line>196</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

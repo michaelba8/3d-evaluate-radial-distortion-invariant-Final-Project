@@ -22,14 +22,10 @@ def main():
        we can use the images for testing later"""
 
     to_save=False
-    image_name='image9.png'
+    image_name='image2.png'
     model_path='files/deer.obj'
     folder_result = "projection results/deer"
     cur_dir=os.path.dirname(__file__)
-    zfar=100
-    znear=0.1
-    focal_len=300
-    size=512
     temp=trimesh.load(model_path,force='mesh',process=False)
     mesh = pyrender.Mesh.from_trimesh(temp ,smooth=False)
     scene = pyrender.Scene(ambient_light=[.1, .1, .3], bg_color=[0, 0, 0])
@@ -38,12 +34,12 @@ def main():
     light = pyrender.DirectionalLight(color=[1, 1, 1], intensity=500)
 
     Tx=0 #verticle axis
-    Ty=250 #horizontle axis
-    Tz=150 #height axis
+    Ty=150 #horizontle axis
+    Tz=250 #height axis
     Rx=np.deg2rad(0)
     Ry=np.deg2rad(0)
     Rz=np.deg2rad(0)
-    arr=[Tx,Tz,Ty,Rx,Ry,Rz]
+    arr=[Tx,Ty,Tz,Rx,Ry,Rz]
     mat=rdi.calc_cam_mat_custom(arr)
     mat=np.vstack((mat,[0,0,0,1]))
     T=np.hstack((np.eye(3),np.array([mesh.centroid]).T))

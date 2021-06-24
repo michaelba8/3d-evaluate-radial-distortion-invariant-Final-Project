@@ -4,14 +4,14 @@ from wand.image import Image
 import os
 
 def main():
-    to_save=True
+    to_save=False
     image_name='image8distorted.png'
     folder_result = "projection results\\deer"
     cur_dir=os.path.dirname(__file__)
-    path="projection results\\deer\\image8.png"
+    path="projection results\\deer\\image1.png"
 
     img = cv2.imread(path)
-    coef=(0.5,0.5,0.5,1)
+    coef=(15.5,-3.5,0.5,1)
     newimg=apply_distortion(path,coef)
 
     # Display old and new image
@@ -28,13 +28,19 @@ def main():
 
 def apply_distortion(path,coef=(0.8, 0.0, 0.0, 1.0)):
     with Image(filename=path) as img:
-        print(img.size)
         img.virtual_pixel = 'transparent'
         img.distort('barrel', coef,best_fit=True)
         img_opencv = np.array(img)
 
     return img_opencv
 
+def apply_distortion_cv2(image,coef=(0.8, 0.0, 0.0, 1.0)):
+    with Image.from_array(array=image) as img:
+        img.virtual_pixel = 'transparent'
+        img.distort('barrel', coef,best_fit=True)
+        img_opencv = np.array(img)
+
+    return img_opencv[:,:,0]
 
 def read_images(folder):
     """Reading all the image from folder"""
