@@ -1,0 +1,9 @@
+image1.png:  Tx=80, Ty=100, Tz=300, Rx=0.0 deg, Ry=-25.0 deg, Rz=0.0 deg
+image2.png:  Tx=-80, Ty=100, Tz=300, Rx=0.0 deg, Ry=20.0 deg, Rz=0.0 deg
+image3.png:  Tx=0, Ty=200, Tz=300, Rx=-14.999999999999998 deg, Ry=0.0 deg, Rz=0.0 deg
+image4.png:  Tx=0, Ty=450, Tz=0, Rx=-90.0 deg, Ry=0.0 deg, Rz=0.0 deg
+image5.png:  Tx=350, Ty=220, Tz=20, Rx=-14.999999999999998 deg, Ry=-90.0 deg, Rz=0.0 deg
+image6.png:  Tx=-350, Ty=60, Tz=220, Rx=-14.999999999999998 deg, Ry=80.0 deg, Rz=0.0 deg
+image7.png:  Tx=95, Ty=130, Tz=-270, Rx=-10.0 deg, Ry=210.00000000000003 deg, Rz=0.0 deg
+image8.png:  Tx=-95, Ty=130, Tz=-270, Rx=-10.0 deg, Ry=150.0 deg, Rz=0.0 deg
+image9.png:  Tx=0, Ty=150, Tz=250, Rx=0.0 deg, Ry=0.0 deg, Rz=0.0 deg

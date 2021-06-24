@@ -1,0 +1,19 @@
+ideal=
+    p0=np.array([246,224])
+    p1=np.array([256,27])
+    p2=np.array([217,234])
+    p3=np.array([319,223])
+    p4=np.array([328,352])
+    p5=np.array([255,198])
+    p6=np.array([255,238])
+    p7=np.array([144,239])
+
+distorted=
+    p0=np.array([247,226])
+    p1=np.array([256,84])
+    p2=np.array([218,234])
+    p3=np.array([313,226])
+    p4=np.array([307,101])
+    p5=np.array([255,203])
+    p6=np.array([255,239])
+    p7=np.array([160,240])

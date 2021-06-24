@@ -1,0 +1,109 @@
+in this file I show some results of point estimation.
+*all the pixels here are the pixels of the same vertex (top-left-positive corner) from different views.
+*all the pixels were taken manualy using "Paint" (תוכנת צייר)
+*because the box is symmetrical, you must know the view details to indentify this specific corner in 2d image
+*there are 6 ideal images, and 6 distorted images, I hope you will understand the results
+
+ideal pixels=
+    p1=np.array([496,248])   #pixel coordinates of the corner in ideal image1
+    p2=np.array([91,338])    
+    p3=np.array([482,278])
+    p4=np.array([92,352])
+    p5=np.array([223,483])
+    p6=np.array([56,273])
+
+distorted pixels=
+    p1=np.array([408,252])  #pixel coordinates of the corner in distorted image1
+    p2=np.array([141,313])
+    p3=np.array([401,271])
+    p4=np.array([144,322])
+    p5=np.array([234,402])
+    p6=np.array([120,268])
+
+actual_vertex_coords= [[-1.5]
+     		       [ 0.5]
+     		       [ 2.5]
+     		       [ 1. ]]
+
+
+ideal images estimation results=
+
+    images 1,2,3:
+    [[-1.52068317]
+     [ 0.4992005 ]
+     [ 2.5141429 ]
+     [ 1.        ]]
+    norm of the error: 0.025068992530629476
+
+    images 1,2,4:
+    [[-1.49591608]
+     [ 0.50655188]
+     [ 2.46102404]
+     [ 1.        ]]
+    norm of the error: 0.039733243152602626
+
+    images 1,3,4:
+    [[-1.54236889]
+     [ 0.50832294]
+     [ 2.48821594]
+     [ 1.        ]]
+    norm of the error: 0.044757778026685756
+
+    images 2,3,4:
+    [[-1.50464942]
+     [ 0.50224839]
+     [ 2.46613625]
+     [ 1.        ]]
+    norm of the error: 0.03425530844556438
+
+
+distorted images estimation results=
+
+    images 1,2,3:
+    [[-1.50838382]
+     [ 0.49443206]
+     [ 2.39485833]
+     [ 1.        ]]
+    norm of the error: 0.10562225605779317
+
+    images 1,2,4:
+    [[-1.56360042]
+     [ 0.47783082]
+     [ 2.5106931 ]
+     [ 1.        ]]
+    norm of the error: 0.06819697831619302
+
+    images 1,3,4:
+    [[-1.46476565]
+     [ 0.47497926]
+     [ 2.45245119]
+     [ 1.        ]]
+    norm of the error: 0.06425252128234979
+
+    images 2,3,4:
+    [[-1.54420545]
+     [ 0.48734884]
+     [ 2.49926392]
+     [ 1.        ]]
+    norm of the error: 0.04598603061402362
+
+
+Multiview (6 cameras/images):
+
+Ideal images estimation results=	
+
+    images 1,2,3,4,5,6 multiview (ideal pixels) :
+    [[-1.5030925]
+     [ 0.5020689]
+     [ 2.467525 ]
+     [ 1.       ]]
+    norm of the error: 0.032687447999754406
+
+Distorted images estimation results=
+
+    images 1,2,3,4,5,6 multiview (distorted pixels) :
+    [[-1.5299321 ]
+     [ 0.48428056]
+     [ 2.4876072 ]
+     [ 1.        ]]
+    norm of the error: 0.0360085333290497
