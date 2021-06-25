@@ -2,25 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae41278-2221-4ef2-904f-9b82a5dbdc36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/render_vertices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/full_simulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applyDistortion.py" beforeDir="false" afterPath="$PROJECT_DIR$/applyDistortion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_rendering_from3d.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_rendering_from3d.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manual_rendering.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_rendering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/open3d_rendering.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/point_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/point_estimation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/iron man/cam matrices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/iron man/cam matrices.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/New Text Document.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/cam matrices.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/image1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/image2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/image3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/image4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test/projection matrix.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/test2/cam matrices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/test2/cam matrices.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radial_distortion_invariant.py" beforeDir="false" afterPath="$PROJECT_DIR$/radial_distortion_invariant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img8.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img9.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img8.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img9.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/render_vertices.py" beforeDir="false" afterPath="$PROJECT_DIR$/render_vertices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_deer.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_deer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trinagulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/trinagulation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +122,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.test_deer">
+  <component name="RunManager" selected="Python.full_simulation">
     <configuration name="applyDistortion" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,7 +144,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="image_rendering_from3d" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="full_simulation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,7 +156,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/image_rendering_from3d.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/full_simulation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -224,10 +230,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_deer" />
+        <item itemvalue="Python.full_simulation" />
         <item itemvalue="Python.render_vertices" />
+        <item itemvalue="Python.test_deer" />
         <item itemvalue="Python.manual_rendering" />
-        <item itemvalue="Python.image_rendering_from3d" />
         <item itemvalue="Python.applyDistortion" />
       </list>
     </recent_temporary>
@@ -440,7 +446,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622886502789</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="added offline distorted pixels calculation">
+      <created>1624578470029</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1624578470029</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added offline distorted pixels calculation">
+      <created>1624578503093</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1624578503093</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -484,7 +504,8 @@
     <MESSAGE value="fixed multiview and tested" />
     <MESSAGE value="fixed revrse_from_pixel&#10;added many scripts" />
     <MESSAGE value="manual rendering simulation to validate rendering" />
-    <option name="LAST_COMMIT_MESSAGE" value="manual rendering simulation to validate rendering" />
+    <MESSAGE value="added offline distorted pixels calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added offline distorted pixels calculation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,24 +531,29 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/trinagulation.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/manual_rendering.py</url>
           <line>90</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/render_vertices.py</url>
-          <line>106</line>
+          <line>101</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/render_vertices.py</url>
-          <line>196</line>
+          <line>191</line>
           <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/trinagulation.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_deer.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

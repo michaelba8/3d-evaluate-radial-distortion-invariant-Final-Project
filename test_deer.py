@@ -27,20 +27,18 @@ def main():
         p1=pixels[0][:,i]
         p2=pixels[1][:,i]
         p3=pixels[2][:,i]
-        pxls=[]
-        for j in range(len(pixels)):
-            pxls.append(pixels[j][:,i])
-        #res,ok=pe.estimate_3d_point(cams[0],cams[1],cams[2],p1,p2,p3)
-        res,ok=pe.estimate_3d_point_mv(cams,pxls)
+        #pxls=[]
+        #for j in range(len(pixels)):
+        #    pxls.append(pixels[j][:,i])
+        res,ok=pe.estimate_3d_point(cams[0],cams[1],cams[2],p1,p2,p3)
+        #res,ok=pe.estimate_3d_point_mv(cams,pxls)
         if not ok:
             print('not ok'+str(i))
         res_mat=np.vstack((res_mat,res.T))
     #print(np.linalg.norm(res_mat-ver))
     diff=res_mat-ver
     diff=diff[:,:3]
-    for r,v in zip(res_mat,ver):
-        print(r[:3]-v[:3])
-    print(np.min(abs(diff)))
+    print(diff)
     return
   #  return
     # top left horn ideal pixels:

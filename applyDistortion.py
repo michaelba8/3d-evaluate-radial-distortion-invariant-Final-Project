@@ -11,7 +11,7 @@ def main():
     path="projection results\\deer\\image1.png"
 
     img = cv2.imread(path)
-    coef=(15.5,-3.5,0.5,1)
+    coef=[1,1,-1.5,1]
     newimg=apply_distortion(path,coef)
 
     # Display old and new image

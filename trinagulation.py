@@ -1,90 +1,114 @@
 import numpy as np
-import radial_distortion_invariant as rdi
-import matplotlib.pyplot as plt
-import solve_projection as sv
-import trimesh
-import pyrender
 import cv2
 import os
 from numpy.linalg import inv
-import point_estimation as pe
 import test1
-import math
+import render_vertices as rv
+
+width=512
+height=512
+models_folder = 'files'
+projection_folder = 'projection results'
+matrices = 'cam_matrices.txt'
+output_file_name = 'pixels'
+
 
 
 def main():
+    ver=np.array([[0,163.6912,73.8259,1]]).T
+    model_path, proj_folder = rv.parser()
+    cam_matrices_path = os.path.join(projection_folder, proj_folder, matrices)
+    cams = rv.read_cam_matrices(cam_matrices_path)
     proj_mat = test1.get_projection_matrix()
-    cam1, cam2, cam3, cam4, cam5, cam6 = test1.get_cameras()
-    cams = [cam1, cam2, cam3, cam4, cam5, cam6]
     cams4x4 = []
     for cam in cams:
         temp = np.vstack((cam, [0, 0, 0, 1]))
         cams4x4.append(temp)
-    # cams4x4=np.array(cams4x4)
-    ideal_p, dist_p = top_left_pixels()
-    w = 512
-    h = 512
-    fovy = np.pi / 3  # 45° in radians
-    f = 0.5 * h / math.tan(fovy / 2)
-    cx = 256
-    cy = 256
-    K = np.array([
-        [f, 0, cx],
-        [0., f, cy],
-        [0., 0., 1.]
-    ], dtype=np.float64)
-    t = inv(cams4x4[0])[:-1, :]
-    c1 = K @ t
-    t = inv(cams4x4[1])[:-1, :]
-    c2 = K @ t
-    proj1 = proj_mat @ cams4x4[0]
-    proj1 = proj1[:-1, :]
-    proj2 = proj_mat @ cams4x4[1]
-    proj2 = proj2[:-1, :]
-    # p1=np.float32([reverse_from_pixel(ideal_p[0],512,512)]).T
-    # p2=np.float32([reverse_from_pixel(ideal_p[1],512,512)]).T
-    p1 = np.float32([ideal_p[0]]).T
-    p2 = np.float32([ideal_p[1]]).T
-    print(c1)
-    print(c2)
-    res = cv2.triangulatePoints(c1, c2, p1, p2)
-    print(res)
-    print(res / res[3])
-
+    K=transform_proj_to_K(proj_mat)
+    cam1=transfrom_view_to_camera(cams4x4[0])
+    cam2=transfrom_view_to_camera(cams4x4[1])
     print()
 
 
-def reverse_from_pixel(pixels, w, h):
-    p = np.float32(pixels)
-    if (len(pixels.shape) == 1):
-        p[0] = ((2 * pixels[0]) / w) - 1
-        p[1] = ((-2 * pixels[1]) / h) + 1
-        return p
-    for i, pix in enumerate(pixels):
-        p[i, 0] = ((2 * pix[0]) / w) - 1
-        p[i, 1] = ((-2 * pix[1]) / h) + 1
-    return p
+def triangulate_matrix(pixels1,pixels2,view1,view2,projection_matrix=None):
+    cam1=transfrom_view_to_camera(view1)
+    cam2=transfrom_view_to_camera(view2)
+    if projection_matrix == None:
+        projection_matrix=test1.get_projection_matrix()
+    K=transform_proj_to_K(projection_matrix)
+    pixels1=np.float32(pixels1)
+    pixels2=np.float32(pixels2)
+    if pixels1.shape[1] == 2:
+        pixels1=pixels1.T
+
+    if pixels2.shape[1] == 2:
+        pixels2=pixels2.T
+
+    res=triangulate(K,cam1,cam2,pixels1,pixels2)
+    return res
 
 
-def top_left_pixels():
-    """ideal pixesls"""
-    p1 = np.array([496, 248])
-    p2 = np.array([91, 338])
-    p3 = np.array([482, 278])
-    p4 = np.array([92, 352])
-    p5 = np.array([223, 483])
-    p6 = np.array([56, 273])
-    ideal_pixels = [p1, p2, p3, p4, p5, p6]
-    """distorted pixels"""
-    p1 = np.array([408, 252])
-    p2 = np.array([141, 313])
-    p3 = np.array([401, 271])
-    p4 = np.array([144, 322])
-    p5 = np.array([234, 402])
-    p6 = np.array([120, 268])
-    distorted_pixels = [p1, p2, p3, p4, p5, p6]
-    return np.array(ideal_pixels), np.array(distorted_pixels)
 
+
+def transfrom_view_to_camera(view):
+    cam=np.zeros((3,4))
+    if view.shape[0] == 3:
+        view=np.vstack((view,[0,0,0,1]))
+    view=inv(view)
+
+    cam[0,0]=view[0,0]
+    cam[0,1]=view[0,1]
+    cam[0,2]=view[0,2]
+    cam[0,3]=view[0,3]
+
+    cam[1,0]=-view[1,0]
+    cam[1,1]=-view[1,1]
+    cam[1,2]=-view[1,2]
+    cam[1,3]=-view[1,3]
+
+    cam[2,0]=-view[2,0]
+    cam[2,1]=-view[2,1]
+    cam[2,2]=-view[2,2]
+    cam[2,3]=-view[2,3]
+    return cam
+
+def transform_proj_to_K(proj):
+    K=np.zeros((3,3))
+    K[0,0]=proj[0,0]*width/2
+    K[0,1]=0
+    K[0,2]=width/2
+
+    K[1,0]=0
+    K[1,1]=proj[1,1]*height/2
+    K[1,2]=height/2
+
+    K[2,0]=0
+    K[2,1]=0
+    K[2,2]=1
+
+    return K
+
+def triangulate(view1,view2,pix1,pix2,projection_matrix=None):
+    cam1=transfrom_view_to_camera(view1)
+    cam2=transfrom_view_to_camera(view2)
+    if projection_matrix == None:
+        projection_matrix=test1.get_projection_matrix()
+    K=transform_proj_to_K(projection_matrix)
+    proj1=K@cam1
+    proj2=K@cam2
+    pix1=np.float32(pix1)
+    pix2=np.float32(pix2)
+    res=cv2.triangulatePoints(proj1,proj2,pix1,pix2)
+    res/=res[3]
+    return res
+
+
+
+
+def test(K,cam,vertex):
+    p=K@cam@vertex
+    p/=p[2]
+    return p[:2]
 
 if __name__ == '__main__':
     main()

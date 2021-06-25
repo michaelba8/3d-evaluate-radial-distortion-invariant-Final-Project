@@ -27,9 +27,13 @@ def main():
     cams = read_cam_matrices(cam_matrices_path)
     camera_instrincs = pyrender.PerspectiveCamera(yfov=y_fov, aspectRatio=1)
     projection_matrix = camera_instrincs.get_projection_matrix(width, height)
-    mesh = trimesh.load(model_path, force='mesh')
+    mesh = trimesh.load(model_path, force='mesh',process=False)
     vertices = mesh.vertices
     vertices = np.hstack((vertices, np.ones((vertices.shape[0], 1))))
+    np.savetxt(os.path.join(projection_folder, proj_folder,
+                            'vertices.txt'),
+               vertices, fmt='%f', delimiter=',')
+
     for i, cam in enumerate(cams):
         pixels = render_vertices(vertices, projection_matrix, cam)
         # test=apply_dist(pixels)
@@ -38,15 +42,6 @@ def main():
                                 output_file_name + '_img' + str(i + 1) + '.txt'),
                    pixels, fmt='%i', delimiter=',')
         print(f'file named {output_file_name}_img{str(i + 1)}.txt wrote succesfuly!')
-        """
-
-        d_pixels=[]
-        for pix in pixels:
-            dist_manual=wand_distortion(pix,coef)
-            d_pixels.append(dist_manual)
-        d_pixels=np.array(d_pixels)
-        print(d_pixels)
-        """
         d_pixels=apply_and_track_distortion(pixels,coef)
         np.savetxt(os.path.join(projection_folder, proj_folder, result_folder,
                                 output_file_name + 'distorted_img' + str(i + 1) + '.txt'),
