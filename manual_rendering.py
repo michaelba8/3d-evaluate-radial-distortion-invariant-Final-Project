@@ -37,9 +37,9 @@ def main():
 
     """cam1"""
     Tx = 95  # verticle axis
-    Ty = 130  # horizontle axis
+    Ty = 170  # horizontle axis
     Tz = -270  # height axis
-    Rx = np.deg2rad(-10)
+    Rx = np.deg2rad(-30)
     Ry = np.deg2rad(210)
     Rz = np.deg2rad(0)
     arr = [Tx, Ty, Tz, Rx, Ry, Rz]

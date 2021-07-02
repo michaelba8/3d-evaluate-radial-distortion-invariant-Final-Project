@@ -11,7 +11,7 @@ def main():
     path="projection results\\deer\\image1.png"
 
     img = cv2.imread(path)
-    coef=[1,1,-1.5,1]
+    coef=[-5,1,-11.5,1]
     newimg=apply_distortion(path,coef)
 
     # Display old and new image
@@ -25,6 +25,8 @@ def main():
 
 
 
+def create_folder(dist_index,coef):
+    pass
 
 def apply_distortion(path,coef=(0.8, 0.0, 0.0, 1.0)):
     with Image(filename=path) as img:

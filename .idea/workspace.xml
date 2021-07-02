@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae41278-2221-4ef2-904f-9b82a5dbdc36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/full_simulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applyDistortion.py" beforeDir="false" afterPath="$PROJECT_DIR$/applyDistortion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixels_img9.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/projection results/deer/pixels/pixelsdistorted_img9.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/full_simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/full_simulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manual_rendering.py" beforeDir="false" afterPath="$PROJECT_DIR$/manual_rendering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image1distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image2distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image3distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image4distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image5distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image6distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image7distorted.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projection results/deer/image8distorted.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/render_vertices.py" beforeDir="false" afterPath="$PROJECT_DIR$/render_vertices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_deer.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_deer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trinagulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/trinagulation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +110,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.full_simulation">
+  <component name="RunManager" selected="Python.applyDistortion">
     <configuration name="applyDistortion" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="3d-evaluate-radial-distortion-invariant-Final-Project-main" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -230,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.applyDistortion" />
         <item itemvalue="Python.full_simulation" />
         <item itemvalue="Python.render_vertices" />
-        <item itemvalue="Python.test_deer" />
         <item itemvalue="Python.manual_rendering" />
-        <item itemvalue="Python.applyDistortion" />
+        <item itemvalue="Python.test_deer" />
       </list>
     </recent_temporary>
   </component>
@@ -460,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624578503093</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="triangulation-works&#10;full-simulation-works&#10;export data offline-works">
+      <created>1624649880969</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1624649880969</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -505,7 +500,8 @@
     <MESSAGE value="fixed revrse_from_pixel&#10;added many scripts" />
     <MESSAGE value="manual rendering simulation to validate rendering" />
     <MESSAGE value="added offline distorted pixels calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added offline distorted pixels calculation" />
+    <MESSAGE value="triangulation-works&#10;full-simulation-works&#10;export data offline-works" />
+    <option name="LAST_COMMIT_MESSAGE" value="triangulation-works&#10;full-simulation-works&#10;export data offline-works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -537,12 +533,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/render_vertices.py</url>
-          <line>101</line>
+          <line>121</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/render_vertices.py</url>
-          <line>191</line>
+          <line>206</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -554,6 +550,21 @@
           <url>file://$PROJECT_DIR$/test_deer.py</url>
           <line>25</line>
           <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/full_simulation.py</url>
+          <line>136</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/render_vertices.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/render_vertices.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,6 +9,7 @@ import pyrender
 
 import radial_distortion_invariant as rdi
 import applyDistortion as ad
+import full_simulation
 
 # global constant variables
 models_folder = 'files'
@@ -19,15 +20,17 @@ width = 512
 height = 512
 y_fov = np.pi / 3
 result_folder = 'pixels'
-coef=[1,1,-1.5,1]
+# coef = [1, 1, -1.5, 1]
+coef = [-5, 1, -11.5, 1]
+
 
 def main():
-    model_path, proj_folder = parser()
+    model_path, proj_folder, toShow, distortion_index, render_ideal = parser()
     cam_matrices_path = os.path.join(projection_folder, proj_folder, matrices)
     cams = read_cam_matrices(cam_matrices_path)
     camera_instrincs = pyrender.PerspectiveCamera(yfov=y_fov, aspectRatio=1)
     projection_matrix = camera_instrincs.get_projection_matrix(width, height)
-    mesh = trimesh.load(model_path, force='mesh',process=False)
+    mesh = trimesh.load(model_path, force='mesh', process=False)
     vertices = mesh.vertices
     vertices = np.hstack((vertices, np.ones((vertices.shape[0], 1))))
     np.savetxt(os.path.join(projection_folder, proj_folder,
@@ -38,77 +41,93 @@ def main():
         pixels = render_vertices(vertices, projection_matrix, cam)
         # test=apply_dist(pixels)
         # plot(test)
+        print()
+
+        if render_ideal:
+            np.savetxt(os.path.join(projection_folder, proj_folder, result_folder,
+                                    output_file_name + '_img' + str(i + 1) + '.txt'),
+                       pixels, fmt='%i', delimiter=',')
+            print(f'file named {output_file_name}_img{str(i + 1)}.txt wrote succesfuly!')
+        
+        d_pixels = apply_and_track_distortion(pixels, coef)
         np.savetxt(os.path.join(projection_folder, proj_folder, result_folder,
-                                output_file_name + '_img' + str(i + 1) + '.txt'),
-                   pixels, fmt='%i', delimiter=',')
-        print(f'file named {output_file_name}_img{str(i + 1)}.txt wrote succesfuly!')
-        d_pixels=apply_and_track_distortion(pixels,coef)
-        np.savetxt(os.path.join(projection_folder, proj_folder, result_folder,
-                                output_file_name + 'distorted_img' + str(i + 1) + '.txt'),
+                                output_file_name + f'd_img {str(i + 1)}_distnum{str(distortion_index)}.txt'),
                    d_pixels, fmt='%i', delimiter=',')
-        plot(d_pixels,isIdeal=False)
-        plot(pixels)
+
+        if toShow:
+            plot(d_pixels, isIdeal=False)
+            plot(pixels,isIdeal=False)
 
 
-
-
-def apply_and_track_distortion(pixels,coef=(0.5,0.5,0.5,1)):
-
+def apply_and_track_distortion(pixels, coef=(0.5, 0.5, 0.5, 1)):
     tmp = np.zeros((width, height), dtype=np.uint8)
-    d_pixels=[]
+    d_pixels = []
     for pixel in pixels:
         tmp = np.zeros((width, height), dtype=np.uint8)
         if pixel[0] < 0 or pixel[0] >= width or pixel[1] < 0 or pixel[1] >= height:
-            d_pixels.append(np.array([-1,-1]))
+            d_pixels.append(np.array([-1, -1]))
+        '''
         try:
             tmp[int(pixel[1]), int(pixel[0])] = 255
         except Exception:
             continue
-        dist=ad.apply_distortion_cv2(tmp,coef)
-        i,j=np.where(dist>30)
-        if(len(j)==0):
-            i,j=np.where(dist>10)
-        if len(j)==0:
-            print()
-        i_avg=i.sum()/len(i)
-        j_avg=j.sum()/len(j)
-        d_pixels.append(np.array([j_avg,i_avg]))
+        '''
+        if 0 <= int(pixel[0]) < width and 0 <= int(pixel[1]) < height:
+            tmp[int(pixel[1]), int(pixel[0])] = 255
+        else:
+            continue
+        dist = ad.apply_distortion_cv2(tmp, coef)
+        i, j = np.where(dist > 30)
+        if len(j) == 0:
+            i, j = np.where(dist > 10)
+        if len(j) == 0:
+            i, j = np.where(dist > 5)
+        if len(j) == 0:
+            i, j = np.where(dist > 2)
+
+        i_avg = i.sum() / len(i)
+        j_avg = j.sum() / len(j)
+        d_pixels.append(np.array([j_avg, i_avg]))
     return np.array(d_pixels)
-
+    """
     tmp = np.zeros((width, height), dtype=np.uint8)
-    d_pixels=[]
+    d_pixels = []
     for pixel in pixels:
         tmp = np.zeros((width, height), dtype=np.uint8)
         if pixel[0] < 0 or pixel[0] >= width or pixel[1] < 0 or pixel[1] >= height:
-            d_pixels.append(np.array([-1,-1]))
+            d_pixels.append(np.array([-1, -1]))
+        
         try:
             tmp[int(pixel[1]), int(pixel[0])] = 255
         except Exception:
             continue
-        dist=ad.apply_distortion_cv2(tmp,coef)
-        i,j=np.where(dist>30)
-        if(len(j)==0):
-            i,j=np.where(dist>10)
-        if len(j)==0:
+        
+        
+        dist = ad.apply_distortion_cv2(tmp, coef)
+        i, j = np.where(dist > 30)
+        if (len(j) == 0):
+            i, j = np.where(dist > 10)
+        if len(j) == 0:
             print()
-        i_avg=i.sum()/len(i)
-        j_avg=j.sum()/len(j)
-        nd=reverse_from_pixel(np.array([i_avg,j_avg]),width,height)
-        d_radius=(nd[0]**2+nd[1]**2)**0.5
-        ni=reverse_from_pixel(pixel,width,height)
-        i_radius=(ni[0]**2+ni[1]**2)**0.5
-        ratio=d_radius/i_radius
+        i_avg = i.sum() / len(i)
+        j_avg = j.sum() / len(j)
+        nd = reverse_from_pixel(np.array([i_avg, j_avg]), width, height)
+        d_radius = (nd[0] ** 2 + nd[1] ** 2) ** 0.5
+        ni = reverse_from_pixel(pixel, width, height)
+        i_radius = (ni[0] ** 2 + ni[1] ** 2) ** 0.5
+        ratio = d_radius / i_radius
         break
     for pixel in pixels:
-        tmp=reverse_from_pixel(pixel,width,height)
-        tmp*=ratio
+        tmp = reverse_from_pixel(pixel, width, height)
+        tmp *= ratio
         tmp[0] = (width / 2 * tmp[0] + width / 2)
         tmp[1] = height - (height / 2 * tmp[1] + height / 2)
         d_pixels.append(tmp)
 
     return np.array(d_pixels)
+    """
 
-def plot(pixels,isIdeal=True):
+def plot(pixels, isIdeal=True):
     img = np.zeros((width, height), dtype=np.uint8)
     for pixel in pixels:
         if pixel[0] < 0 or pixel[0] >= width or pixel[1] < 0 or pixel[1] >= height:
@@ -118,14 +137,13 @@ def plot(pixels,isIdeal=True):
         except Exception:
             continue
     if isIdeal:
-        d_img=ad.apply_distortion_cv2(img,coef)
+        d_img = ad.apply_distortion_cv2(img, coef)
         cv2.imshow('ideal', img)
         cv2.imshow('distorted', d_img)
         cv2.waitKey()
     else:
         cv2.imshow('distoted', img)
         cv2.waitKey()
-
 
 
 def render_vertices(vertices, proj, cam):
@@ -156,6 +174,9 @@ def parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model-name', default='deer.obj', type=str)
     parser.add_argument('--res-folder', default='deer', type=str)
+    parser.add_argument('--distortion-num', default=1, type=int)
+    parser.add_argument('--show-img', default=True, type=bool)
+    parser.add_argument('--render-ideal', default=False, type=bool)
     args = parser.parse_args()
     if not args.model_name.endswith('.obj'):
         print('Wrong model format, the module only except obj format')
@@ -165,7 +186,7 @@ def parser():
     '''
         TODO: add validation tests
     '''
-    return model_path, args.res_folder
+    return model_path, args.res_folder, args.show_img, args.distortion_num, args.render_ideal
 
 
 def map_to_pixel(point3d, w, h, projection, view):
@@ -176,30 +197,22 @@ def map_to_pixel(point3d, w, h, projection, view):
     return p
 
 
-"""
-def apply_dist(pixels,coef=(1,1,1,1)):
-    tmp=reverse_from_pixel(pixels,width,height).T
-    tmp=rdi.applyDistortion(tmp,coef)
-    tmp[0] = (width / 2 * tmp[0] + width / 2)
-    tmp[1] = height - (height / 2 * tmp[1] + height / 2)
-    return tmp.T
-"""
-def wand_distortion(pixel,coef=(1.5,0.5,0.5,1)):
+def wand_distortion(pixel, coef=(1.5, 0.5, 0.5, 1)):
     """
     copy image wand library barel distortion
     """
 
-    n_pixel=reverse_from_pixel(pixel,512,512)
-    radius=(n_pixel[0]**2+n_pixel[1]**2)**(0.5)
-    x=coef[0]*np.power(256,0)
-    y=coef[1]*np.power(256,0)
-    z=coef[2]*np.power(256,0)
-    #x=coef[0]
-    #y=coef[1]
-    #z=coef[2]
-    rs=x*np.power(radius,3)+y*np.power(radius,2)+z*radius+coef[3]
-    #rs=rs*radius
-    res=(1/rs)*n_pixel
+    n_pixel = reverse_from_pixel(pixel, 512, 512)
+    radius = (n_pixel[0] ** 2 + n_pixel[1] ** 2) ** (0.5)
+    x = coef[0] * np.power(256, 0)
+    y = coef[1] * np.power(256, 0)
+    z = coef[2] * np.power(256, 0)
+    # x=coef[0]
+    # y=coef[1]
+    # z=coef[2]
+    rs = x * np.power(radius, 3) + y * np.power(radius, 2) + z * radius + coef[3]
+    # rs=rs*radius
+    res = (1 / rs) * n_pixel
     res[0] = (width / 2 * res[0] + width / 2)
     res[1] = height - (height / 2 * res[1] + height / 2)
     return res
@@ -217,7 +230,6 @@ def wand_distortion(pixel,coef=(1.5,0.5,0.5,1)):
     res[1]=256-rs*d_pixel[1]
     return res
     """
-
 
 
 def reverse_from_pixel(pixels, w, h):
